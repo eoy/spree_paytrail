@@ -1,6 +1,6 @@
 # Spree Paytrail
 
-A [Spree](http://spreecommerce.com) extension to allow payments using Paytrail
+A [Spree](http://spreecommerce.com) extension to allow payments using Paytrail, heavily inspried by spree-pp-website-standard and spree_gateway
 
 ## Before you read further
 
@@ -34,72 +34,19 @@ You may want to implement your own custom logic by adding 'state_machine' hooks.
 
 Add to your Spree application Gemfile.
 
-    gem "spree_paypal_website_standard", :git => "git://github.com/tomash/spree-pp-website-standard.git"
+    gem "spree_paytrail", :git => "git://github.com/eoy/spree_paytrail.git"
 
 Run the install rake task to copy migrations (create payment_notifications table)
 
-    rails generate spree_paypal_website_standard:install
+    rails generate spree_paytrail:install
 
 Configure, run, test.
 
 
 ## Configuration
 
-Be sure to configure the following configuration parameters. Preferably put it in initializer like config/initializers/pp_website_standard.rb.
-
-Example:
-
-    Spree::Paypal::Config.set(:account => "foo@example.com") 
-    Spree::Paypal::Config.set(:success_url => "http://localhost:3000/paypal/confirm")
-    
-
-The following configuration options (keys) can be set:
-
-    :account         # email account of store 
-    :success_url     # url the customer is redirected to after successfully completing payment
-    :currency_code   # default EUR
-    :sandbox_url     # paypal url in sandbox mode, default https://www.sandbox.paypal.com/cgi-bin/webscr
-    :paypal_url      # paypal url in production, default https://www.paypal.com/cgi-bin/webscr
-    :populate_address # (true/false) pre-populate fields of billing address based on spree order data
-    :encryption      # (true/false) use encrypted shopping cart
-    :cert_id         # id of certificate used to encrypted stuff
-    :ipn_secret      # secret string for authorizing IPN
-
-Only the first three ones need to be set up in order to get running. 
-
-The last three are required for secure, encrypted operation (see below).
-
-## Encryption / Security
-
-The payment link can be encrypted using an SSL key pair and a PayPal public key. In order to attempt this encryption, the following elements must be available. If these are not available a normal link will be generated.
-
-Spree::Paypal::Config[:encrypted] must be set to true.
-Spree::Paypal::Config[:cert_id] must be set to a valid certificate id.
-Spree::Paypal::Config[:ipn_secret] must be set to a string considered secret.
-Application must have a Rails.root/certs directory with following files:
-
-    app_cert.pem # application certificate
-    app_key.pem  # application key
-    paypal_cert_#{Rails.env}.pem # paypal certificate
-
-The best instructions on what is what, how these files should be generated etc. are [in AsciiCast 143](http://asciicasts.com/episodes/143-paypal-security) (basically the code of this extension is also based on this AsciiCast). 
-
-## IPN Notes (outdated!)
-
-Real world testing indicates that IPN can be very slow.  If you want to test the IPN piece Paypal now has an IPN tool on their developer site.  Just use the correct URL from the hidden field on your Spree checkout screen.  In the IPN tool, change the transaction type to `cart checkout` and change the `mc_gross` variable to match your order total.
-
-
-## Testing
-
-Be sure to bundle your dependencies and then create a dummy test app for the specs to run against.
-
-    $ bundle
-    $ bundle exec rake test_app
-    $ bundle exec rspec spec
-
+Be sure to set the Merchant ID and Merchant Secret in the admin panel.
 
 ## TODO
 
-* README with complete documentation
-* Test suite
-* Refunds
+* Make it less aggressive towards other payment solutions
