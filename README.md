@@ -1,8 +1,6 @@
-# Spree PayPal Website Standard
+# Spree Paytrail
 
-A [Spree](http://spreecommerce.com) extension to allow payments using PayPal Website Standard.
-
-[![Build Status](https://secure.travis-ci.org/tomash/spree-pp-website-standard.png)](http://travis-ci.org/tomash/spree-pp-website-standard)
+A [Spree](http://spreecommerce.com) extension to allow payments using Paytrail
 
 ## Before you read further
 

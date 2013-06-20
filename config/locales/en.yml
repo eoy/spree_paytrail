@@ -1,8 +1,7 @@
---- 
+# Sample localization file for English. Add more files in this directory for other locales.
+# See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
+
 en:
-  spree:
-    paypal_website_standard:
-      pay_with_paypal: "Pay with PayPal"
-      check_out_with_paypal: "Check out with PayPal"
-      payment_received: "Thank you.. We received the payment for your order from PayPal. Your order will be shipped shortly"
-      order_processed_successfully: "Thank you.. Your order processed succesfully. You will be notified once we receive the payment from PayPal"
+  payment_has_been_cancelled: The payment has been cancelled.
+  change_payment_method: Change Payment Method
+  complete_skrill_checkout: Please complete Skrill checkout before continuing
