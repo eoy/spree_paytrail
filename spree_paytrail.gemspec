@@ -17,7 +17,7 @@ Gem::Specification.new do |s|
   s.require_path = 'lib'
   s.requirements << 'none'
 
-  s.add_dependency 'active_merchant'
+  s.add_dependency 'activemerchant'
 
 
   s.add_development_dependency 'capybara', '1.0.1'
