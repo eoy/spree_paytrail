@@ -49,6 +49,7 @@ module Spree
       else
         payment.complete!
         @order.update!
+        @order.finalize!
         @order.state = "complete"
         @order.save!
       end
