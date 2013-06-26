@@ -2,6 +2,9 @@ module Spree
   CheckoutController.class_eval do
     before_filter :confirm_paytrail, :only => [:update]
 
+    # TODO: Add banks and map them to payment_method_id
+    # BANKS = ['nordea', 'aktia']
+
     def success?(params)
       params['PAID'] != "0000000000"
     end
@@ -57,7 +60,11 @@ module Spree
       if @order.state == "complete" or @order.completed?
         flash[:notice] = I18n.t(:order_processed_successfully)
         flash[:commerce_tracking] = "nothing special"
-        redirect_to completion_route
+        if params[:payment_method_id].to_i == 6
+          render :partial => "nordea", :locals => {:route => completion_route}
+        else
+          redirect_to completion_route
+        end
       else
         redirect_to checkout_state_path(@order.state)
       end
