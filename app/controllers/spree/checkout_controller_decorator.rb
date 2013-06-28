@@ -60,11 +60,11 @@ module Spree
       if @order.state == "complete" or @order.completed?
         flash[:notice] = I18n.t(:order_processed_successfully)
         flash[:commerce_tracking] = "nothing special"
-        if params[:payment_method_id].to_i == 6
-          render :partial => "nordea", :locals => {:route => completion_route}
-        else
-          redirect_to completion_route
-        end
+        #if params[:payment_method_id].to_i == 6
+        render :partial => "jsredirect", :locals => {:route => completion_route}
+        #else
+        #  redirect_to completion_route
+        #end
       else
         redirect_to checkout_state_path(@order.state)
       end
