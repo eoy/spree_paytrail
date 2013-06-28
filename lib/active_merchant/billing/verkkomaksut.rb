@@ -13,7 +13,7 @@ module ActiveMerchant #:nodoc:
           CANCEL_ADDRESS: opts[:cancel_url],
           PENDING_ADDRESS: "",
           NOTIFY_ADDRESS: "",
-          CULTURE: "fi_FI",
+          CULTURE: "en_US",
           PRESELECTED_METHOD: "",
           MODE: 1,
           VISIBLE_METHODS: "",
