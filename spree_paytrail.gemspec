@@ -18,6 +18,7 @@ Gem::Specification.new do |s|
   s.requirements << 'none'
 
   s.add_dependency 'activemerchant'
+  s.add_dependency 'browser'
 
 
   s.add_development_dependency 'capybara', '1.0.1'
