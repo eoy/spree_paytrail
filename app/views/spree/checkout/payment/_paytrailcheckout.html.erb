@@ -20,7 +20,7 @@ opts[:payment_method_id] = payment_method.id
 </style>
 
 <fieldset id="skrill_payment__<%= payment_method.id %>" data-hook>
-  <legend>Verkkomaksut Payment<%#= t(:payment_information) %></legend>
+  <!-- <legend>Paytrail Payment<%#= t(:payment_information) %></legend> -->
   <%# Send IE users to the paytrail page instead of showing in IFrame %>
   <% if browser.ie? %>
     <% url = payment_method.redirect_url @order, opts %>
@@ -30,7 +30,8 @@ opts[:payment_method_id] = payment_method.id
     </script>
   <% else %>
     <iframe id="skrill_frame_<%= payment_method.id %>"
-          class="skrill_frame" src="<%= payment_method.redirect_url @order, opts %>"></iframe>
+            class="skrill_frame" src="<%= payment_method.redirect_url @order, opts %>">
+    </iframe>
   <% end %>
 </fieldset>
 
