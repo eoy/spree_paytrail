@@ -17,6 +17,7 @@ module Spree
       opts.merge! self.preferences
 
       set_global_options(opts)
+      set_preferred_language(opts)
 
       opts[:detail1_text] = order.number
       opts[:detail1_description] = "Order:"
@@ -47,5 +48,19 @@ module Spree
         opts[:payment_methods] = self.preferred_payment_options
       end
 
+      def set_preferred_language(opts)
+        if self.preferred_language == "en_US"
+          lang = "en_US"
+        elsif self.preferred_language == "en"
+          lang = "en_US"
+        elsif self.preferred_language == "fi"
+          lang = "fi_FI"
+        elsif self.preferred_language == "fi_FI"
+          lang = "fi_FI"
+        else
+          lang = "en_US"
+        end
+        opts[:culture] = self.preferred_language
+      end
   end
 end
