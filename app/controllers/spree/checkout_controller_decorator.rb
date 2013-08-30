@@ -72,7 +72,7 @@ module Spree
 
     def paytrail_cancel
       flash[:error] = t(:payment_has_been_cancelled)
-      redirect_to edit_order_path(@order)
+      render :partial => "jsredirect", :locals => {:route => edit_order_path(@order)}
     end
 
     private
