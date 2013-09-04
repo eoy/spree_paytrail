@@ -22,7 +22,7 @@ opts[:payment_method_id] = payment_method.id
 <fieldset id="skrill_payment__<%= payment_method.id %>" data-hook>
   <!-- <legend>Paytrail Payment<%#= t(:payment_information) %></legend> -->
   <%# Send IE users to the paytrail page instead of showing in IFrame %>
-  <% if browser.ie? %>
+  <% if browser.ie? || browser.safari? %>
     <% url = payment_method.redirect_url @order, opts %>
     <p>Redirecting..</p>
     <script type="text/javascript">
