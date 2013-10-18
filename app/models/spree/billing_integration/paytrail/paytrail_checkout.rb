@@ -49,17 +49,25 @@ module Spree
       end
 
       def set_preferred_language(opts)
-        if self.preferred_language == "en_US"
+        # if self.preferred_language == "en_US"
+        #   lang = "en_US"
+        # elsif self.preferred_language.downcase == "en"
+        #   lang = "en_US"
+        # elsif self.preferred_language.downcase == "fi"
+        #   lang = "fi_FI"
+        # elsif self.preferred_language == "fi_FI"
+        #   lang = "fi_FI"
+        # else
+        #   lang = "en_US"
+        # end
+        if I18n.locale.to_s == "en"
           lang = "en_US"
-        elsif self.preferred_language.downcase == "en"
-          lang = "en_US"
-        elsif self.preferred_language.downcase == "fi"
-          lang = "fi_FI"
-        elsif self.preferred_language == "fi_FI"
+        elsif I18n.locale.to_s == "fi"
           lang = "fi_FI"
         else
-          lang = "en_US"
+          lang = "fi_FI"
         end
+
         opts[:culture] = lang
       end
   end
