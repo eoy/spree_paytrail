@@ -49,7 +49,9 @@ module Spree
       end
 
       # Check if the auth-code returned from Paytrail is valid
-      unless success?(params) && acknowledge(secret)
+      if success?(params) == false || acknowledge(secret) == false
+        logger.error "Payment wasn't valid for order: #{@order.number}"
+        flash[:notice] = "There was a problem with authorizing your payment."
         payment.started_processing!
         payment.failure!
         redirect_to checkout_state_path(@order.state)
@@ -61,7 +63,7 @@ module Spree
         @order.save!
       end
 
-      if @order.state == "complete" or @order.completed?
+      if @order.state == "complete" || @order.completed?
         flash[:notice] = I18n.t(:order_processed_successfully)
         flash[:commerce_tracking] = "nothing special"
         #if params[:payment_method_id].to_i == 6
@@ -70,6 +72,7 @@ module Spree
         #  redirect_to completion_route
         #end
       else
+        logger.error "@order wasn't complete for #{@order.number}"
         redirect_to checkout_state_path(@order.state)
       end
     end
