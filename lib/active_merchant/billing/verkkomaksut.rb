@@ -33,7 +33,7 @@ module ActiveMerchant #:nodoc:
       end
 
       def service_url
-        "https://payment.verkkomaksut.fi/"
+        "https://payment.paytrail.com/"
       end
 
       def payment_url(opts)
